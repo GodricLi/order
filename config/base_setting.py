@@ -11,14 +11,17 @@ AUTH_COOKIE_NAME = 'food'
 """过滤url，不需要登录就能访问的"""
 # 登录页面
 IGNORE_URLS = [
-    '^/user/login'
+    '^/user/login',
+    "^/api"
 ]
 # 静态文件
 IGNORE_CHECK_LOGIN_URLS = [
     '^/static',
     '^/favicon.ico'
 ]
-
+API_IGNORE_URLS = [
+    "^/api"
+]
 """自定义分页设置"""
 PAGE_SIZE = 10
 PAGE_DISPLAY = 10

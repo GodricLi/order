@@ -4,3 +4,4 @@ mysqlclient
 flask_script
 flask-sqlacodegen
 sqlalchemy
+requests
