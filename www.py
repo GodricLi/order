@@ -8,7 +8,7 @@ from web.controllers.static import route_static
 from web.controllers.account.Account import route_account
 from web.controllers.finance.Finance import route_finance
 from web.controllers.food.FoodRoute import route_food
-from web.controllers.member.Member import route_member
+from web.controllers.member.Members import route_member
 from web.controllers.stat.Stat import route_stat
 from web.controllers.upload.Uplod import route_upload
 from web.controllers.api.Member import route_api
