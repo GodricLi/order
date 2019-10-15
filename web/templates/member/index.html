@@ -9,7 +9,8 @@
                     <select name="status" class="form-control inline">
                         <option value="-1">请选择状态</option>
                         {% for tmp_key in status_mapping %}
-                            <option value="{{ tmp_key }}" {% if tmp_key == search_on['status'] %} selected {% endif %}>{{ status_mapping[ tmp_key ] }}</option>
+                            <option value="{{ tmp_key }}" {% if tmp_key == search_on['status'] %}
+                                    selected {% endif %}>{{ status_mapping[ tmp_key ] }}</option>
                         {%  endfor %}
                     </select>
                 </div>
