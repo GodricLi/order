@@ -12,11 +12,6 @@ from common.libs.member.MemberService import MemberService
 route_api = Blueprint('api_page', __name__)
 
 
-@route_api.route('/')
-def index():
-    return "Mina Api V1.0"
-
-
 @route_api.route('/member/login', methods=['GET', 'POST'])
 def login():
     res = {'code': 200, 'msg': '登录成功', 'data': {}}
