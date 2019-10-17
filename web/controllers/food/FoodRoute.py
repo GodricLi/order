@@ -91,7 +91,7 @@ def food_set():
         res['info'] = food_info
         res['cat_list'] = cat_list
         res['current'] = 'index'
-        return ops_render("food/set_food.html", res)
+        return ops_render("food/set.html", res)
 
     res = {'code': 200, 'msg': '操作成功', 'data': {}}
     req_data = request.values
