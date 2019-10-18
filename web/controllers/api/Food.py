@@ -71,3 +71,9 @@ def food_search():
     res['data']['list'] = data_food_list
     res['data']['has_more'] = 0 if len(data_food_list) < page_size else 1
     return jsonify(res)
+
+
+@route_api.route('/info')
+def food_info():
+    res = {'code': 200, 'msg': '操作成功', 'data': {}}
+    return jsonify(res)
