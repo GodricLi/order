@@ -76,4 +76,11 @@ def food_search():
 @route_api.route('/info')
 def food_info():
     res = {'code': 200, 'msg': '操作成功', 'data': {}}
+    req_data = request.values
+    food_id = int(req_data['id']) if 'id' in req_data else 0
+    food_info_obj = Food.query.filter_by(id=food_id).first()
+    if not food_info_obj:
+        res['code'] = -1
+        res['msg'] = '美食已下架'
+
     return jsonify(res)
