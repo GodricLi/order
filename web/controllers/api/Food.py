@@ -1,6 +1,6 @@
 # _*_coding:utf-8 _*_
 # @Author　 : Ric
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, g
 from web.controllers.api import route_api
 from common.models.food.Food import Food
 from common.models.food.FoodCat import FoodCat
@@ -73,8 +73,9 @@ def food_search():
     return jsonify(res)
 
 
-@route_api.route('/info')
+@route_api.route('/food/info')
 def food_info():
+    """美食详情页面"""
     res = {'code': 200, 'msg': '操作成功', 'data': {}}
     req_data = request.values
     food_id = int(req_data['id']) if 'id' in req_data else 0
@@ -83,4 +84,17 @@ def food_info():
         res['code'] = -1
         res['msg'] = '美食已下架'
 
+    # member_info = g.member_info
+    cart_member = 0
+    res['data']['info'] = {
+        'id': food_info_obj.id,
+        'name': food_info_obj.name,
+        'summary': food_info_obj.summary,
+        'total_count': food_info_obj.total_count,
+        'main_image': UrlManager.buildImageUrl(food_info_obj.main_image),
+        'price': str(food_info_obj.price),
+        'stock': food_info_obj.stock,
+        'pics': [UrlManager.buildImageUrl(food_info_obj.main_image)]
+    }
+    res['data']['cart_member'] = cart_member
     return jsonify(res)
