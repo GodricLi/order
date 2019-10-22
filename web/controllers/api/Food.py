@@ -98,3 +98,9 @@ def food_info():
     }
     res['data']['cart_member'] = cart_member
     return jsonify(res)
+
+
+@route_api.route('/food/comments')
+def food_comments():
+    res = {'code': 200, 'msg': '操作成功', 'data': {}}
+    return jsonify(res)
