@@ -14,6 +14,7 @@ from web.controllers.upload.Uplod import route_upload
 from web.controllers.api import route_api
 
 """拦截器配置"""
+from web.interceptors.ApiAuthInterceptor import *
 from web.interceptors.AuthInterceptor import *
 from web.interceptors.ErrorInterceptor import *
 

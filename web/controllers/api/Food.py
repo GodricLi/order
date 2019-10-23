@@ -103,4 +103,5 @@ def food_info():
 @route_api.route('/food/comments')
 def food_comments():
     res = {'code': 200, 'msg': '操作成功', 'data': {}}
+
     return jsonify(res)

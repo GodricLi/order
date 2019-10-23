@@ -6,6 +6,7 @@ from flask import request, jsonify, g
 from application import app, db
 from common.models.member.OauthMemberBind import OauthMemberBind
 from common.models.member.Member import Member
+from common.models.food.WxShareHistory import WxShareHistory
 from common.libs.Helper import get_current_time
 from common.libs.member.MemberService import MemberService
 
@@ -85,4 +86,20 @@ def check_reg():
 
     token = f"{MemberService.get_member_code(member_info)}#{member_info.id}"
     res['data']['token'] = token
+    return jsonify(res)
+
+
+@route_api.route('/member/share', methods=['GET', 'POST'])
+def member_share():
+    res = {'code': 200, 'msg': 'success', 'data': {}}
+    req_data = request.values
+    url = req_data['url'] if 'url' in req_data else ''
+    member_info = g.member_info
+    model_share = WxShareHistory()
+    if member_info:
+        model_share.member_id = member_info.id
+    model_share.share_url = url
+    model_share.created_time = get_current_time()
+    db.session.add(model_share)
+    db.session.commit()
     return jsonify(res)
