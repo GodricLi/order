@@ -25,9 +25,9 @@ def before_request():
     member_info = check_member_login()
 
     # 登录成功之后设置一个user_info对象全局变量
-    g.current_user = None
+    g.member_info = None
     if member_info:
-        g.current_user = member_info
+        g.member_info = member_info
     pattern = re.compile('%s' % "|".join(ignore_urls))
     if pattern.match(path):
         return
@@ -49,7 +49,7 @@ def check_member_login():
     if len(auth_info) != 2:
         return False
     try:
-        member_info = Member.query.filter_by(uid=auth_info[1]).first()
+        member_info = Member.query.filter_by(id=auth_info[1]).first()
     except Exception:
         return False
     if not member_info:
