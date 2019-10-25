@@ -8,6 +8,12 @@ from application import app, db
 from common.libs.member.CartService import CartService
 
 
+@route_api.route('cart/index')
+def cart_index():
+    res = {'code': 200, 'msg': 'success', 'data': {}}
+    return jsonify(res)
+
+
 @route_api.route('/cart/set', methods=['POST'])
 def cart_set():
     res = {'code': 200, 'msg': 'success', 'data': {}}
