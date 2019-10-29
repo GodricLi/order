@@ -11,6 +11,11 @@ from common.libs.member.CartService import CartService
 @route_api.route('cart/index')
 def cart_index():
     res = {'code': 200, 'msg': 'success', 'data': {}}
+    member_info = g.member_info
+    if not member_info:
+        res['code'] = -1
+        res['msg'] = "获取失败，伪登录~~"
+        return jsonify(res)
     return jsonify(res)
 
 
