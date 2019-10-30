@@ -5,6 +5,8 @@ from flask import request, jsonify, g
 from common.models.food.Food import Food
 from common.models.member.MemberCart import MemberCart
 from application import app, db
+from common.libs.Helper import get_dict_filter_field,select_filter_bj
+from common.libs.UrlManager import UrlManager
 from common.libs.member.CartService import CartService
 
 
@@ -16,6 +18,25 @@ def cart_index():
         res['code'] = -1
         res['msg'] = "获取失败，伪登录~~"
         return jsonify(res)
+    cart_list = MemberCart.query.filter_by(member_id=member_info.id).all()
+    data_cart_list = []
+    if cart_list:
+        food_ids = select_filter_bj(cart_list, "food_id")
+        food_map = get_dict_filter_field(Food, Food.id, "id", food_ids)
+        for item in cart_list:
+            tmp_food_info = food_map[item.food_id]
+            tmp_data = {
+                "id": item.id,
+                "number": item.quantity,
+                "food_id": item.food_id,
+                "name": tmp_food_info.name,
+                "price": str(tmp_food_info.price),
+                "pic_url": UrlManager.buildImageUrl(tmp_food_info.main_image),
+                "active": True
+            }
+            data_cart_list.append(tmp_data)
+
+    res['data']['list'] = data_cart_list
     return jsonify(res)
 
 
