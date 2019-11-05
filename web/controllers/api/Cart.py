@@ -1,11 +1,12 @@
 # _*_coding:utf-8 _*_
 # @Author　 : Ric
+import json
 from web.controllers.api import route_api
 from flask import request, jsonify, g
 from common.models.food.Food import Food
 from common.models.member.MemberCart import MemberCart
 from application import app, db
-from common.libs.Helper import get_dict_filter_field,select_filter_bj
+from common.libs.Helper import get_dict_filter_field, select_filter_bj
 from common.libs.UrlManager import UrlManager
 from common.libs.member.CartService import CartService
 
@@ -70,5 +71,31 @@ def cart_set():
     if not ret:
         res['code'] = -1
         res['msg'] = 'failed '
+        return jsonify(res)
+    return jsonify(res)
+
+
+@route_api.route('/cart/del', methods=['GET', 'POST'])
+def del_cart():
+    res = {'code': 200, 'msg': 'success', 'data': {}}
+    req_data = request.values
+    params_goods = req_data['goods'] if 'goods' in req_data else None
+
+    items = []
+    if params_goods:
+        items = json.loads(params_goods)
+    if not items or len(items) < 1:
+        return jsonify(res)
+
+    member_info = g.member_info
+    if not member_info:
+        res['code'] = -1
+        res['msg'] = "删除购物车失败-1~~"
+        return jsonify(res)
+
+    ret = CartService.delete_item(member_id=member_info.id, items=items)
+    if not ret:
+        res['code'] = -1
+        res['msg'] = "删除购物车失败-2~~"
         return jsonify(res)
     return jsonify(res)
