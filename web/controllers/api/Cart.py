@@ -17,7 +17,7 @@ def cart_index():
     member_info = g.member_info
     if not member_info:
         res['code'] = -1
-        res['msg'] = "获取失败，伪登录~~"
+        res['msg'] = "获取失败，伪登录"
         return jsonify(res)
     cart_list = MemberCart.query.filter_by(member_id=member_info.id).all()
     data_cart_list = []
