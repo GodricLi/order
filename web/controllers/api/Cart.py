@@ -13,6 +13,7 @@ from common.libs.member.CartService import CartService
 
 @route_api.route('cart/index')
 def cart_index():
+    """购物车主页"""
     res = {'code': 200, 'msg': 'success', 'data': {}}
     member_info = g.member_info
     if not member_info:
@@ -96,6 +97,6 @@ def del_cart():
     ret = CartService.delete_item(member_id=member_info.id, items=items)
     if not ret:
         res['code'] = -1
-        res['msg'] = "删除购物车失败-2~~"
+        res['msg'] = "删除购物车失败-2"
         return jsonify(res)
     return jsonify(res)
