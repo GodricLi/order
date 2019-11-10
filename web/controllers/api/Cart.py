@@ -91,7 +91,7 @@ def del_cart():
     member_info = g.member_info
     if not member_info:
         res['code'] = -1
-        res['msg'] = "删除购物车失败-1~~"
+        res['msg'] = "删除购物车失败-1"
         return jsonify(res)
 
     ret = CartService.delete_item(member_id=member_info.id, items=items)
