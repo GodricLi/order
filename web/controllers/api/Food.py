@@ -113,4 +113,6 @@ def food_comments():
 @route_api.route("/food/comments")
 def food_comments():
     res = {'code': 200, 'msg': 'success', 'data': {}}
+    req_data = request.values
+    food_id = int(req_data['id']) if 'id' in req_data else 0
     return jsonify(res)
