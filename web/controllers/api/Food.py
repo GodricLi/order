@@ -115,4 +115,6 @@ def food_comments():
     res = {'code': 200, 'msg': 'success', 'data': {}}
     req_data = request.values
     food_id = int(req_data['id']) if 'id' in req_data else 0
+    query = MemberComments.query.filter( MemberComments.food_ids.ilike("%_{0}_%".format(id)) )
+    list = query.order_by( MemberComments.id.desc() ).limit(5).all()
     return jsonify(res)
