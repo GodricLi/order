@@ -116,5 +116,21 @@ def food_comments():
     req_data = request.values
     food_id = int(req_data['id']) if 'id' in req_data else 0
     query = MemberComments.query.filter( MemberComments.food_ids.ilike("%_{0}_%".format(id)) )
-    list = query.order_by( MemberComments.id.desc() ).limit(5).all()
+    comments_list = query.order_by( MemberComments.id.desc() ).limit(5).all()
+    if list:
+        member_map = getDictFilterField(Member, Member.id, "id", selectFilterObj(list, "member_id"))
+        for item in list:
+            if item.member_id not in member_map:
+                continue
+            tmp_member_info = member_map[item.member_id]
+            tmp_data = {
+                'score': item.score_desc,
+                'date': item.created_time.strftime("%Y-%m-%d %H:%M:%S"),
+                "content": item.content,
+                "user": {
+                    'nickname': tmp_member_info.nickname,
+                    'avatar_url': tmp_member_info.avatar,
+                }
+            }
+            data_list.append(tmp_data)
     return jsonify(res)
