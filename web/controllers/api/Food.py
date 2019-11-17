@@ -115,8 +115,9 @@ def food_comments():
     res = {'code': 200, 'msg': 'success', 'data': {}}
     req_data = request.values
     food_id = int(req_data['id']) if 'id' in req_data else 0
-    query = MemberComments.query.filter( MemberComments.food_ids.ilike("%_{0}_%".format(id)) )
-    comments_list = query.order_by( MemberComments.id.desc() ).limit(5).all()
+    query = MemberComments.query.filter(MemberComments.food_ids.ilike("%_{0}_%".format(id)))
+    comments_list = query.order_by(MemberComments.id.desc()).limit(5).all()
+    data_list = []
     if list:
         member_map = getDictFilterField(Member, Member.id, "id", selectFilterObj(list, "member_id"))
         for item in list:
@@ -133,4 +134,7 @@ def food_comments():
                 }
             }
             data_list.append(tmp_data)
+
+        res['data']['list'] = data_list
+        res['data']['count'] = query.count()
     return jsonify(res)
