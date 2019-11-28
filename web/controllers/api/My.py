@@ -13,4 +13,6 @@ import json,datetime
 @route_api.route("/my/order")
 def my_order_list():
     res = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    member_info = g.member_info
+
     return jsonify(res)
