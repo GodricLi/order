@@ -14,5 +14,6 @@ import json,datetime
 def my_order_list():
     res = {'code': 200, 'msg': '操作成功~', 'data': {}}
     member_info = g.member_info
+    status = int(req['status']) if 'status' in req else 0
 
     return jsonify(res)
