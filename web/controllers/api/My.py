@@ -16,5 +16,6 @@ def my_order_list():
     member_info = g.member_info
     req_data = request.values
     status = int(req_data['status']) if 'status' in req_data else 0
-
+    if status == -8:  # 等待付款
+        query = query.filter(PayOrder.status == -8)
     return jsonify(res)
