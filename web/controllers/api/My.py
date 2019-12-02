@@ -18,4 +18,6 @@ def my_order_list():
     status = int(req_data['status']) if 'status' in req_data else 0
     if status == -8:  # 等待付款
         query = query.filter(PayOrder.status == -8)
+    elif status == -7:  # 待发货
+        query = query.filter(PayOrder.status == 1, PayOrder.express_status == -7, PayOrder.comment_status == 0)
     return jsonify(res)
