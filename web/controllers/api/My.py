@@ -20,4 +20,6 @@ def my_order_list():
         query = query.filter(PayOrder.status == -8)
     elif status == -7:  # 待发货
         query = query.filter(PayOrder.status == 1, PayOrder.express_status == -7, PayOrder.comment_status == 0)
+    elif status == -6:  # 待确认
+        query = query.filter(PayOrder.status == 1, PayOrder.express_status == -6, PayOrder.comment_status == 0)
     return jsonify(res)
