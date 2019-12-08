@@ -28,4 +28,6 @@ def my_order_list():
         query = query.filter(PayOrder.status == 1, PayOrder.express_status == 1, PayOrder.comment_status == 1)
     else:
         query = query.filter(PayOrder.status == 0)
+    pay_order_list = query.order_by(PayOrder.id.desc()).all()
+
     return jsonify(res)
