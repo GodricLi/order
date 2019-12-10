@@ -30,4 +30,5 @@ def my_order_list():
         query = query.filter(PayOrder.status == 0)
     pay_order_list = query.order_by(PayOrder.id.desc()).all()
     data_pay_order_list = []
+    if pay_order_list:
     return jsonify(res)
