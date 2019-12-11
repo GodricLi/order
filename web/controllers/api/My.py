@@ -31,4 +31,5 @@ def my_order_list():
     pay_order_list = query.order_by(PayOrder.id.desc()).all()
     data_pay_order_list = []
     if pay_order_list:
+        pay_order_ids = selectFilterObj(pay_order_list, "id")
     return jsonify(res)
