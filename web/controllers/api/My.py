@@ -33,5 +33,6 @@ def my_order_list():
     if pay_order_list:
         pay_order_ids = selectFilterObj(pay_order_list, "id")
         pay_order_item_list = PayOrderItem.query.filter(PayOrderItem.pay_order_id.in_(pay_order_ids)).all()
+        food_ids = selectFilterObj(pay_order_item_list, "food_id")
 
     return jsonify(res)
