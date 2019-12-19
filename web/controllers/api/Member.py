@@ -102,4 +102,5 @@ def member_share():
     model_share.created_time = get_current_time()
     db.session.add(model_share)
     db.session.commit()
+
     return jsonify(res)

@@ -36,5 +36,6 @@ def my_order_list():
         food_ids = selectFilterObj(pay_order_item_list, "food_id")
         food_map = getDictFilterField(Food, Food.id, "id", food_ids)
         pay_order_item_map = {}
+        if pay_order_item_list:
 
     return jsonify(res)
