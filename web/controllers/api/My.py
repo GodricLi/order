@@ -37,5 +37,7 @@ def my_order_list():
         food_map = getDictFilterField(Food, Food.id, "id", food_ids)
         pay_order_item_map = {}
         if pay_order_item_list:
+            if item.pay_order_id not in pay_order_item_map:
+                pay_order_item_map[item.pay_order_id] = []
 
     return jsonify(res)
