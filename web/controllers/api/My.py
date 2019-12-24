@@ -40,5 +40,6 @@ def my_order_list():
             if item.pay_order_id not in pay_order_item_map:
                 pay_order_item_map[item.pay_order_id] = []
                 tmp_food_info = food_map[item.food_id]
+                pay_order_item_map[item.pay_order_id].append({
 
     return jsonify(res)
