@@ -42,4 +42,6 @@ def my_order_list():
                 tmp_food_info = food_map[item.food_id]
                 pay_order_item_map[item.pay_order_id].append({
                     'id': item.id,
+                    'food_id': item.food_id,
+
     return jsonify(res)
