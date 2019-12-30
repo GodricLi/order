@@ -45,5 +45,6 @@ def my_order_list():
                     'food_id': item.food_id,
                     'price': str(item.price),
                     'pic_url': UrlManager.buildImageUrl(tmp_food_info.main_image),
+                    'name': tmp_food_info.name
 
     return jsonify(res)
