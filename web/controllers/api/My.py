@@ -51,5 +51,6 @@ def my_order_list():
         for item in pay_order_list:
             tmp_data = {
                 'status': item.pay_status,
+                'status_desc': item.status_desc,
 
     return jsonify(res)
