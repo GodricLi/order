@@ -52,5 +52,6 @@ def my_order_list():
             tmp_data = {
                 'status': item.pay_status,
                 'status_desc': item.status_desc,
+                'date': item.created_time.strftime("%Y-%m-%d %H:%M:%S"),
 
     return jsonify(res)
