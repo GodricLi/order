@@ -53,5 +53,6 @@ def my_order_list():
                 'status': item.pay_status,
                 'status_desc': item.status_desc,
                 'date': item.created_time.strftime("%Y-%m-%d %H:%M:%S"),
+                'order_number': item.order_number,
 
     return jsonify(res)
