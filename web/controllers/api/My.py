@@ -56,5 +56,6 @@ def my_order_list():
                 'order_number': item.order_number,
                 'order_sn': item.order_sn,
                 'note': item.note,
+                'total_price': str(item.total_price),
 
     return jsonify(res)
